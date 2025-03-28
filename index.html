@@ -2,335 +2,300 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Manmath Kapale - Senior Software Engineer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
     <style>
-      :root {
-        --matrix-green: #0f0;
-        --background: #000;
+      .gradient-text {
+        background: linear-gradient(45deg, #4f46e5, #ec4899);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
       }
-      body {
-        margin: 0;
-        overflow-x: hidden;
-        font-family: "Courier New", monospace;
-        background: var(--background);
-        color: var(--matrix-green);
-        position: relative;
-        line-height: 1.6;
-      }
-      #matrix-canvas {
-        position: fixed;
-        top: 0;
-        left: 0;
-        z-index: -1;
-      }
-      .content {
-        position: relative;
-        padding: 20px;
-        max-width: 1200px;
-        margin: 0 auto;
-        text-shadow: 0 0 5px var(--matrix-green);
-      }
-      .card {
-        background: rgba(0, 20, 0, 0.9);
-        padding: 2rem;
-        margin: 2rem 0;
-        border: 1px solid var(--matrix-green);
-        box-shadow: 0 0 15px var(--matrix-green);
-        border-radius: 5px;
-      }
-      h1,
-      h2,
-      h3 {
-        color: var(--matrix-green);
-        margin: 0 0 1rem 0;
-      }
-      h1 {
-        font-size: 2.5em;
-      }
-      h2 {
-        font-size: 1.8em;
-      }
-      h3 {
-        font-size: 1.4em;
-        border-bottom: 2px solid var(--matrix-green);
-        padding-bottom: 0.5rem;
-      }
-      a {
-        color: var(--matrix-green);
-        text-decoration: none;
-        margin-right: 20px;
-      }
-      a:hover {
-        text-decoration: underline;
-        text-shadow: 0 0 10px var(--matrix-green);
-      }
-      .timeline {
-        border-left: 2px solid var(--matrix-green);
-        padding-left: 2rem;
-        margin-left: 1rem;
-      }
-      .timeline-item {
-        margin: 2rem 0;
-        position: relative;
-      }
-      .timeline-item::before {
-        content: "";
-        position: absolute;
-        left: -2.7rem;
-        top: 0.3rem;
-        width: 20px;
-        height: 20px;
-        background: var(--matrix-green);
-        border-radius: 50%;
-        box-shadow: 0 0 10px var(--matrix-green);
-      }
-      .tech-bubble {
-        display: inline-block;
-        padding: 8px 15px;
-        margin: 5px;
-        border: 1px solid var(--matrix-green);
-        border-radius: 15px;
-        background: rgba(0, 255, 0, 0.1);
-        transition: all 0.3s ease;
-      }
-      .tech-bubble:hover {
-        background: rgba(0, 255, 0, 0.3);
-        transform: translateY(-3px);
-      }
-      ul {
-        padding-left: 20px;
-      }
-      li {
-        margin: 1rem 0;
+      .project-card:hover .project-overlay {
+        opacity: 1;
+        transform: translateY(0);
       }
     </style>
   </head>
-  <body>
-    <canvas id="matrix-canvas"></canvas>
-
-    <div class="content">
-      <!-- Header Section -->
-      <div class="card">
-        <h1>Manmath Kapale</h1>
-        <h2>Senior Software Engineer</h2>
-        <div class="links">
-          <a href="mailto:your.email@example.com">📧 Email</a>
-          <a href="[LINKEDIN_URL]">💼 LinkedIn</a>
-          <a href="[GITHUB_URL]">🐱 GitHub</a>
+  <body class="bg-gray-900 text-gray-100">
+    <!-- Navigation -->
+    <nav class="fixed w-full bg-gray-800/90 backdrop-blur-md z-50">
+      <div
+        class="container mx-auto px-6 py-4 flex justify-between items-center"
+      >
+        <span class="text-2xl font-bold gradient-text">MK</span>
+        <div class="space-x-8">
+          <a href="#experience" class="hover:text-indigo-400 transition"
+            >Experience</a
+          >
+          <a href="#skills" class="hover:text-indigo-400 transition">Skills</a>
+          <a href="#education" class="hover:text-indigo-400 transition"
+            >Education</a
+          >
+          <a href="#contact" class="hover:text-indigo-400 transition"
+            >Contact</a
+          >
         </div>
       </div>
+    </nav>
 
-      <!-- Professional Summary -->
-      <div class="card">
-        <h3>PROFESSIONAL SUMMARY</h3>
-        <p>
+    <!-- Hero Section -->
+    <section class="min-h-screen flex items-center pt-20">
+      <div class="container mx-auto px-6" data-aos="fade-up">
+        <h1 class="text-5xl md:text-7xl font-bold mb-6">Manmath Kapale</h1>
+        <h2 class="text-3xl md:text-5xl gradient-text font-bold mb-8">
+          Senior Software Engineer
+        </h2>
+        <p class="text-xl md:text-2xl text-gray-400 max-w-3xl mb-12">
           A dynamic and multi-skilled professional with 7.7 years of experience
-          in .Net 6 (.Net core), Angular 10, Reactjs, and Microservices, seeking
-          a challenging role in a dynamic organization to contribute my skills
-          towards its growth while exploring opportunities for professional
-          development.
+          in .Net 6 (.Net core), Angular 10, Reactjs, and Microservices.
         </p>
-      </div>
-
-      <!-- Technical Skills -->
-      <div class="card">
-        <h3>TECHNICAL SKILLS</h3>
-        <div class="skills">
-          <span class="tech-bubble">C#</span>
-          <span class="tech-bubble">.Net 6</span>
-          <span class="tech-bubble">.Net Core</span>
-          <span class="tech-bubble">Angular 10</span>
-          <span class="tech-bubble">Reactjs</span>
-          <span class="tech-bubble">Microservices</span>
-          <span class="tech-bubble">AWS</span>
-          <span class="tech-bubble">Azure</span>
-          <span class="tech-bubble">Docker</span>
-          <span class="tech-bubble">Kubernetes</span>
-          <span class="tech-bubble">MS SQL</span>
-          <span class="tech-bubble">Postgres SQL</span>
-          <span class="tech-bubble">Cosmos DB</span>
-          <span class="tech-bubble">NgRx</span>
-          <span class="tech-bubble">REST APIs</span>
-          <span class="tech-bubble">Agile Methodology</span>
-          <span class="tech-bubble">HTML5</span>
-          <span class="tech-bubble">CSS3</span>
-          <span class="tech-bubble">Bootstrap</span>
-          <span class="tech-bubble">TypeScript</span>
-          <span class="tech-bubble">JavaScript</span>
+        <div class="flex space-x-6">
+          <a
+            href="#contact"
+            class="bg-indigo-600 hover:bg-indigo-700 px-8 py-3 rounded-lg font-medium transition"
+          >
+            Contact Me
+          </a>
         </div>
       </div>
+    </section>
 
-      <!-- Professional Experience -->
-      <div class="card">
-        <h3>PROFESSIONAL EXPERIENCE</h3>
-        <div class="timeline">
-          <div class="timeline-item">
-            <h4>
-              Avalara Technologies Private Limited, Pune (Jan 2022 - Present)
-            </h4>
-            <p><em>Senior Software Engineer</em></p>
-            <ul>
+    <!-- Experience Section -->
+    <section id="experience" class="py-20 bg-gray-800/50">
+      <div class="container mx-auto px-6">
+        <h2 class="text-4xl font-bold mb-16" data-aos="fade-up">
+          Professional Experience
+        </h2>
+
+        <!-- Experience Timeline -->
+        <div class="space-y-12">
+          <!-- Avalara -->
+          <div
+            class="relative pl-8 border-l-2 border-indigo-500"
+            data-aos="fade-right"
+          >
+            <div
+              class="absolute w-4 h-4 bg-indigo-500 rounded-full -left-[9px] top-0"
+            ></div>
+            <h3 class="text-2xl font-bold mb-2">Senior Software Engineer</h3>
+            <p class="text-indigo-400 mb-4">
+              Avalara Technologies • Jan 2022 - Present
+            </p>
+            <ul class="list-disc list-inside space-y-2 text-gray-300">
               <li>
                 Developed backend APIs in .Net 6 with Docker containers for VISA
-                System handling VAT reports for Amazon EU
+                System
               </li>
-              <li>Created UI components using Angular</li>
+              <li>
+                Created UI components using Angular for VAT reporting system
+              </li>
               <li>
                 Technologies: .Net 6, Microservices, Docker, Kubernetes, Angular
               </li>
             </ul>
           </div>
 
-          <div class="timeline-item">
-            <h4>
-              Volkswagen Group Technology Solutions India, Pune (Jan 2021 - Jan
-              2022)
-            </h4>
-            <p><em>Software Engineer</em></p>
-            <ul>
+          <!-- Volkswagen -->
+          <div
+            class="relative pl-8 border-l-2 border-indigo-500"
+            data-aos="fade-right"
+          >
+            <div
+              class="absolute w-4 h-4 bg-indigo-500 rounded-full -left-[9px] top-0"
+            ></div>
+            <h3 class="text-2xl font-bold mb-2">Software Engineer</h3>
+            <p class="text-indigo-400 mb-4">
+              Volkswagen Group • Jan 2021 - Jan 2022
+            </p>
+            <ul class="list-disc list-inside space-y-2 text-gray-300">
               <li>
                 Developed Dealer Management System using Vue.js/Angular 10
               </li>
-              <li>Migrated Oracle DB to Postgres DB</li>
-              <li>Integrated front-end with back-end APIs</li>
-              <li>
-                Technologies: Angular 10, .Net Core, Postgres SQL, Data
-                Structures
-              </li>
+              <li>Migrated Oracle DB to Postgres SQL</li>
+              <li>Technologies: Angular 10, .Net Core, Postgres SQL</li>
             </ul>
           </div>
 
-          <div class="timeline-item">
-            <h4>Exxat Systems Private Limited, Pune (Apr 2019 - Jan 2021)</h4>
-            <p><em>Software Development Engineer I</em></p>
-            <ul>
+          <!-- Exxat Systems -->
+          <div
+            class="relative pl-8 border-l-2 border-indigo-500"
+            data-aos="fade-right"
+          >
+            <div
+              class="absolute w-4 h-4 bg-indigo-500 rounded-full -left-[9px] top-0"
+            ></div>
+            <h3 class="text-2xl font-bold mb-2">
+              Software Development Engineer I
+            </h3>
+            <p class="text-indigo-400 mb-4">
+              Exxat Systems • Apr 2019 - Jan 2021
+            </p>
+            <ul class="list-disc list-inside space-y-2 text-gray-300">
               <li>
                 Developed APIs using .Net core and Microservices Architecture
               </li>
               <li>
-                Built front-end UI for STEPS/Compliance/Admissions platforms
-                using Angular (NgRx/Dynamic forms)
+                Built front-end UI for healthcare platforms serving 350+ US
+                universities
               </li>
-              <li>Created Docker image pipelines and Azure CI/CD workflows</li>
-              <li>Served 350+ US medical universities</li>
+              <li>Technologies: Angular, NgRx, Azure CI/CD</li>
             </ul>
           </div>
 
-          <div class="timeline-item">
-            <h4>DMates Technologies, Pune (Aug 2017 - Apr 2019)</h4>
-            <p><em>Angular Developer</em></p>
-            <ul>
+          <!-- DMates Technologies -->
+          <div
+            class="relative pl-8 border-l-2 border-indigo-500"
+            data-aos="fade-right"
+          >
+            <div
+              class="absolute w-4 h-4 bg-indigo-500 rounded-full -left-[9px] top-0"
+            ></div>
+            <h3 class="text-2xl font-bold mb-2">Angular Developer</h3>
+            <p class="text-indigo-400 mb-4">
+              DMates Technologies • Aug 2017 - Apr 2019
+            </p>
+            <ul class="list-disc list-inside space-y-2 text-gray-300">
               <li>
-                Designed code architecture and developed front-end using Angular
+                Developed front-end for healthcare applications using Angular
               </li>
               <li>
-                Implemented projects including Company Dashboard and Humano Care
+                Implemented projects including Company Dashboard and Patient
+                Care
               </li>
-              <li>Performed unit testing and deployment</li>
               <li>Technologies: .Net Core, Microservices, NgRx</li>
             </ul>
           </div>
         </div>
       </div>
+    </section>
 
-      <!-- Education -->
-      <div class="card">
-        <h3>EDUCATION</h3>
-        <div class="timeline">
-          <div class="timeline-item">
-            <h4>PG-DAC, CDAC Sunbeam Institute (2017)</h4>
+    <!-- Skills Section -->
+    <section id="skills" class="py-20">
+      <div class="container mx-auto px-6">
+        <h2 class="text-4xl font-bold mb-16" data-aos="fade-up">
+          Technical Skills
+        </h2>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <!-- Frontend -->
+          <div class="p-6 bg-gray-800 rounded-xl" data-aos="zoom-in">
+            <h3 class="text-xl font-bold mb-4 text-indigo-400">Frontend</h3>
+            <div class="flex flex-wrap gap-2">
+              <span class="px-3 py-1 bg-gray-900 rounded-full">Angular 10</span>
+              <span class="px-3 py-1 bg-gray-900 rounded-full">React</span>
+              <span class="px-3 py-1 bg-gray-900 rounded-full">HTML5</span>
+              <span class="px-3 py-1 bg-gray-900 rounded-full">CSS3</span>
+              <span class="px-3 py-1 bg-gray-900 rounded-full">Bootstrap</span>
+            </div>
           </div>
-          <div class="timeline-item">
-            <h4>
-              B.E. Electronics & Telecommunication, Shivaji University (2016)
-            </h4>
+
+          <!-- Backend -->
+          <div class="p-6 bg-gray-800 rounded-xl" data-aos="zoom-in">
+            <h3 class="text-xl font-bold mb-4 text-indigo-400">Backend</h3>
+            <div class="flex flex-wrap gap-2">
+              <span class="px-3 py-1 bg-gray-900 rounded-full">.Net 6</span>
+              <span class="px-3 py-1 bg-gray-900 rounded-full">.Net Core</span>
+              <span class="px-3 py-1 bg-gray-900 rounded-full">REST APIs</span>
+              <span class="px-3 py-1 bg-gray-900 rounded-full"
+                >Microservices</span
+              >
+            </div>
           </div>
-          <div class="timeline-item">
-            <h4>HSC, Maharashtra State Board (2011)</h4>
+
+          <!-- Databases -->
+          <div class="p-6 bg-gray-800 rounded-xl" data-aos="zoom-in">
+            <h3 class="text-xl font-bold mb-4 text-indigo-400">Databases</h3>
+            <div class="flex flex-wrap gap-2">
+              <span class="px-3 py-1 bg-gray-900 rounded-full">MS SQL</span>
+              <span class="px-3 py-1 bg-gray-900 rounded-full"
+                >Postgres SQL</span
+              >
+              <span class="px-3 py-1 bg-gray-900 rounded-full">Cosmos DB</span>
+            </div>
           </div>
-          <div class="timeline-item">
-            <h4>SSC, Maharashtra State Board (2009)</h4>
+
+          <!-- Other Skills -->
+          <div class="p-6 bg-gray-800 rounded-xl" data-aos="zoom-in">
+            <h3 class="text-xl font-bold mb-4 text-indigo-400">
+              Tools & Cloud
+            </h3>
+            <div class="flex flex-wrap gap-2">
+              <span class="px-3 py-1 bg-gray-900 rounded-full">AWS</span>
+              <span class="px-3 py-1 bg-gray-900 rounded-full">Azure</span>
+              <span class="px-3 py-1 bg-gray-900 rounded-full">Docker</span>
+              <span class="px-3 py-1 bg-gray-900 rounded-full">Kubernetes</span>
+            </div>
           </div>
         </div>
       </div>
+    </section>
 
-      <!-- Domain Expertise -->
-      <div class="card">
-        <h3>DOMAIN EXPERTISE</h3>
-        <div class="skills">
-          <span class="tech-bubble">Allied Healthcare</span>
-          <span class="tech-bubble">Automobile</span>
-          <span class="tech-bubble">Banking</span>
-          <span class="tech-bubble">Tax</span>
+    <!-- Education Section -->
+    <section id="education" class="py-20 bg-gray-800/50">
+      <div class="container mx-auto px-6">
+        <h2 class="text-4xl font-bold mb-16" data-aos="fade-up">Education</h2>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div class="p-6 bg-gray-900 rounded-xl" data-aos="flip-left">
+            <h3 class="text-xl font-bold text-indigo-400">PG-DAC</h3>
+            <p class="text-gray-400">CDAC, Sunbeam Institute • 2017</p>
+          </div>
+
+          <div class="p-6 bg-gray-900 rounded-xl" data-aos="flip-left">
+            <h3 class="text-xl font-bold text-indigo-400">
+              B.E. Electronics & Telecommunication
+            </h3>
+            <p class="text-gray-400">Shivaji University • 2016</p>
+          </div>
         </div>
       </div>
-    </div>
+    </section>
 
+    <!-- Contact Section -->
+    <section id="contact" class="py-20">
+      <div class="container mx-auto px-6 text-center">
+        <h2 class="text-4xl font-bold mb-8" data-aos="fade-up">Get in Touch</h2>
+        <div class="flex justify-center space-x-6">
+          <a
+            href="mailto:your.email@example.com"
+            class="bg-indigo-600 hover:bg-indigo-700 px-8 py-3 rounded-lg font-medium transition"
+          >
+            📧 Email
+          </a>
+          <a
+            href="[LinkedIn URL]"
+            class="bg-indigo-600 hover:bg-indigo-700 px-8 py-3 rounded-lg font-medium transition"
+          >
+            💼 LinkedIn
+          </a>
+          <a
+            href="[GitHub URL]"
+            class="bg-indigo-600 hover:bg-indigo-700 px-8 py-3 rounded-lg font-medium transition"
+          >
+            🐱 GitHub
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-      // Matrix Animation
-      const canvas = document.getElementById("matrix-canvas");
-      const ctx = canvas.getContext("2d");
-
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-
-      const chars =
-        "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%^&*()_+-=[]{}|;:<>?";
-      const fontSize = 14;
-      const columns = canvas.width / fontSize;
-      const drops = [];
-
-      for (let x = 0; x < columns; x++) {
-        drops[x] = Math.random() * canvas.height;
-      }
-
-      function draw() {
-        ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
-        ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-        ctx.fillStyle = "#0F0";
-        ctx.font = fontSize + "px monospace";
-
-        for (let i = 0; i < drops.length; i++) {
-          const char = chars[Math.floor(Math.random() * chars.length)];
-          ctx.fillText(char, i * fontSize, drops[i] * fontSize);
-
-          if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
-            drops[i] = 0;
-          }
-          drops[i]++;
-        }
-      }
-
-      // Smooth animation using requestAnimationFrame
-      function animate() {
-        draw();
-        requestAnimationFrame(animate);
-      }
-
-      animate();
-
-      // Handle window resize
-      window.addEventListener("resize", () => {
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
+      AOS.init({
+        duration: 1000,
+        once: true,
+        easing: "ease-in-out",
       });
 
-      // Scroll animations
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.style.opacity = 1;
-            entry.target.style.transform = "translateY(0)";
-          }
+      // Smooth scroll
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
+          e.preventDefault();
+          document.querySelector(this.getAttribute("href")).scrollIntoView({
+            behavior: "smooth",
+          });
         });
-      });
-
-      document.querySelectorAll(".card").forEach((card) => {
-        card.style.opacity = 0;
-        card.style.transform = "translateY(50px)";
-        card.style.transition = "all 1s ease-out";
-        observer.observe(card);
       });
     </script>
   </body>
