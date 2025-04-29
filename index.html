@@ -7,25 +7,145 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
     <style>
+      :root {
+        --primary: #4f46e5;
+        --secondary: #ec4899;
+        --bg: #111827;
+        --text: #f3f4f6;
+        --card-bg: #1f2937;
+      }
+      
+      .theme-dark {
+        --primary: #4f46e5;
+        --secondary: #ec4899;
+        --bg: #111827;
+        --text: #f3f4f6;
+        --card-bg: #1f2937;
+      }
+      
+      .theme-light {
+        --primary: #6366f1;
+        --secondary: #ec4899;
+        --bg: #f9fafb;
+        --text: #111827;
+        --card-bg: #ffffff;
+      }
+      
+      .theme-blue {
+        --primary: #1d4ed8;
+        --secondary: #3b82f6;
+        --bg: #1e40af;
+        --text: #f0f9ff;
+        --card-bg: #1e3a8a;
+      }
+      
+      body {
+        background-color: var(--bg);
+        color: var(--text);
+      }
+      
       .gradient-text {
-        background: linear-gradient(45deg, #4f46e5, #ec4899);
+        background: linear-gradient(45deg, var(--primary), var(--secondary));
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
       }
+      
       .project-card:hover .project-overlay {
         opacity: 1;
         transform: translateY(0);
       }
+      
+      nav {
+        background-color: rgba(31, 41, 55, 0.9);
+      }
+      
+      .bg-gray-800 {
+        background-color: var(--card-bg);
+      }
+      
+      .bg-gray-900 {
+        background-color: var(--bg);
+      }
+      
+      .text-gray-300, .text-gray-400 {
+        color: var(--text);
+      }
+      
+      .bg-indigo-600 {
+        background-color: var(--primary);
+      }
+      
+      .hover\:bg-indigo-700:hover {
+        background-color: var(--secondary);
+      }
+      
+      .text-indigo-400 {
+        color: var(--primary);
+      }
+      
+      .border-indigo-500 {
+        border-color: var(--primary);
+      }
     </style>
   </head>
   <body class="bg-gray-900 text-gray-100">
+    <!-- Particles Background -->
+    <div id="particles-js" class="fixed top-0 left-0 w-full h-full z-0"></div>
+    <!-- 3D Background -->
+    <div id="three-js-container" class="fixed top-0 left-0 w-full h-full z-0 opacity-20" style="pointer-events: none;"></div>
     <!-- Navigation -->
     <nav class="fixed w-full bg-gray-800/90 backdrop-blur-md z-50">
       <div
         class="container mx-auto px-6 py-4 flex justify-between items-center"
       >
         <span class="text-2xl font-bold gradient-text">MK</span>
-        <div class="space-x-8">
+        <div class="space-x-8 flex items-center">
+          <div class="relative group" id="theme-selector">
+            <button class="hover:text-indigo-400 transition flex items-center transform hover:scale-110 duration-300" 
+                    onclick="toggleThemeMenu()">
+              Theme
+              <svg class="w-4 h-4 ml-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+              </svg>
+            </button>
+            <div id="theme-menu" class="absolute right-0 mt-2 w-48 bg-gray-800/95 rounded-xl shadow-2xl z-50 hidden transform transition-all duration-500 origin-top scale-y-0 opacity-0 backdrop-blur-lg border border-indigo-500/20" 
+                 style="transform-style: preserve-3d; perspective: 1000px;">
+              <div class="py-1 space-y-1">
+                <button onclick="setTheme('default')" 
+                        class="block px-4 py-3 text-sm text-gray-300 hover:bg-gray-700/80 w-full text-left transition-all duration-300 hover:translate-x-2 hover:bg-opacity-80 rounded-lg"
+                        data-sound="hover">
+                  <span class="flex items-center">
+                    <span class="w-2 h-2 rounded-full bg-indigo-500 mr-2"></span>
+                    Default
+                  </span>
+                </button>
+                <button onclick="setTheme('dark')" 
+                        class="block px-4 py-3 text-sm text-gray-300 hover:bg-gray-700/80 w-full text-left transition-all duration-300 hover:translate-x-2 hover:bg-opacity-80 rounded-lg"
+                        data-sound="hover">
+                  <span class="flex items-center">
+                    <span class="w-2 h-2 rounded-full bg-purple-500 mr-2"></span>
+                    Dark
+                  </span>
+                </button>
+                <button onclick="setTheme('light')" 
+                        class="block px-4 py-3 text-sm text-gray-300 hover:bg-gray-700/80 w-full text-left transition-all duration-300 hover:translate-x-2 hover:bg-opacity-80 rounded-lg"
+                        data-sound="hover">
+                  <span class="flex items-center">
+                    <span class="w-2 h-2 rounded-full bg-pink-500 mr-2"></span>
+                    Light
+                  </span>
+                </button>
+                <button onclick="setTheme('blue')" 
+                        class="block px-4 py-3 text-sm text-gray-300 hover:bg-gray-700/80 w-full text-left transition-all duration-300 hover:translate-x-2 hover:bg-opacity-80 rounded-lg"
+                        data-sound="hover">
+                  <span class="flex items-center">
+                    <span class="w-2 h-2 rounded-full bg-blue-500 mr-2"></span>
+                    Blue
+                  </span>
+                </button>
+              </div>
+            </div>
+          </div>
           <a href="#experience" class="hover:text-indigo-400 transition"
             >Experience</a
           >
@@ -90,6 +210,10 @@
               </li>
               <li>
                 Created UI components using Angular for VAT reporting system
+              </li>
+              <li>
+                Integrated Gen AI tools (ChatGPT, Cursor, Windsurf) for code generation,
+                documentation, and API design in VISA System development
               </li>
               <li>
                 Technologies: .Net 6, Microservices, Docker, Kubernetes, Angular
@@ -259,19 +383,19 @@
         <h2 class="text-4xl font-bold mb-8" data-aos="fade-up">Get in Touch</h2>
         <div class="flex justify-center space-x-6">
           <a
-            href="mailto:your.email@example.com"
+            href="mailto:manmathkapale@gmail.com"
             class="bg-indigo-600 hover:bg-indigo-700 px-8 py-3 rounded-lg font-medium transition"
           >
             📧 Email
           </a>
           <a
-            href="[LinkedIn URL]"
+            href="https://in.linkedin.com/in/manmath-kapale-a347b9242"
             class="bg-indigo-600 hover:bg-indigo-700 px-8 py-3 rounded-lg font-medium transition"
           >
             💼 LinkedIn
           </a>
           <a
-            href="[GitHub URL]"
+            href="https://github.com/manmathk"
             class="bg-indigo-600 hover:bg-indigo-700 px-8 py-3 rounded-lg font-medium transition"
           >
             🐱 GitHub
@@ -280,21 +404,149 @@
       </div>
     </section>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
+      // Initialize AOS
       AOS.init({
         duration: 1000,
         once: true,
         easing: "ease-in-out",
       });
 
-      // Smooth scroll
+      // Initialize Three.js scene
+      const scene = new THREE.Scene();
+      const camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 1000);
+      const renderer = new THREE.WebGLRenderer({ alpha: true });
+      renderer.setSize(window.innerWidth, window.innerHeight);
+      document.getElementById('three-js-container').appendChild(renderer.domElement);
+
+      // Add floating shapes
+      const geometry = new THREE.IcosahedronGeometry(1, 0);
+      const material = new THREE.MeshBasicMaterial({ color: 0x4f46e5, wireframe: true });
+      const shapes = [];
+      
+      for (let i = 0; i < 15; i++) {
+        const shape = new THREE.Mesh(geometry, material);
+        shape.position.x = Math.random() * 20 - 10;
+        shape.position.y = Math.random() * 20 - 10;
+        shape.position.z = Math.random() * 20 - 10;
+        shape.scale.setScalar(Math.random() * 0.5 + 0.5);
+        scene.add(shape);
+        shapes.push(shape);
+      }
+
+      camera.position.z = 5;
+
+      function animate() {
+        requestAnimationFrame(animate);
+        shapes.forEach(shape => {
+          shape.rotation.x += 0.005;
+          shape.rotation.y += 0.005;
+        });
+        renderer.render(scene, camera);
+      }
+      animate();
+
+      // Initialize particles.js
+      particlesJS('particles-js', {
+        particles: {
+          number: { value: 80, density: { enable: true, value_area: 800 } },
+          color: { value: "#4f46e5" },
+          shape: { type: "circle" },
+          opacity: { value: 0.5, random: true },
+          size: { value: 3, random: true },
+          line_linked: { enable: true, distance: 150, color: "#4f46e5", opacity: 0.4, width: 1 },
+          move: { enable: true, speed: 2, direction: "none", random: false, straight: false, out_mode: "out" }
+        },
+        interactivity: {
+          detect_on: "canvas",
+          events: {
+            onhover: { enable: true, mode: "repulse" },
+            onclick: { enable: true, mode: "push" }
+          }
+        }
+      });
+
+      // Theme functions
+      function setTheme(themeName) {
+        document.documentElement.className = '';
+        document.documentElement.classList.add(`theme-${themeName}`);
+        localStorage.setItem('theme', themeName);
+        playSound('select');
+        closeThemeMenu();
+      }
+      
+      function toggleThemeMenu() {
+        const menu = document.getElementById('theme-menu');
+        if (menu.classList.contains('hidden')) {
+          openThemeMenu();
+        } else {
+          closeThemeMenu();
+        }
+      }
+      
+      function openThemeMenu() {
+        const menu = document.getElementById('theme-menu');
+        menu.classList.remove('hidden', 'scale-y-0', 'opacity-0');
+        menu.classList.add('scale-y-100', 'opacity-100');
+        playSound('open');
+      }
+      
+      function closeThemeMenu() {
+        const menu = document.getElementById('theme-menu');
+        menu.classList.remove('scale-y-100', 'opacity-100');
+        menu.classList.add('scale-y-0', 'opacity-0');
+        setTimeout(() => menu.classList.add('hidden'), 300);
+      }
+      
+      function playSound(type) {
+        const sounds = {
+          'open': 'https://assets.mixkit.co/sfx/preview/mixkit-select-click-1109.mp3',
+          'hover': 'https://assets.mixkit.co/sfx/preview/mixkit-hover-click-1112.mp3',
+          'select': 'https://assets.mixkit.co/sfx/preview/mixkit-quick-jump-arcade-game-239.mp3'
+        };
+        if (sounds[type]) {
+          const audio = new Audio(sounds[type]);
+          audio.volume = 0.3;
+          audio.play().catch(e => console.log('Audio play failed:', e));
+        }
+      }
+      
+      // Close menu when clicking outside
+      document.addEventListener('click', (e) => {
+        const themeSelector = document.getElementById('theme-selector');
+        if (!themeSelector.contains(e.target)) {
+          closeThemeMenu();
+        }
+      });
+      
+      // Apply saved theme or default
+      (function() {
+        const savedTheme = localStorage.getItem('theme') || 'default';
+        setTheme(savedTheme);
+      })();
+      
+      // Smooth scroll and contact button handling
       document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
         anchor.addEventListener("click", function (e) {
           e.preventDefault();
           document.querySelector(this.getAttribute("href")).scrollIntoView({
             behavior: "smooth",
           });
+        });
+      });
+      
+      // Handle contact buttons with higher z-index and proper event handling
+      document.querySelectorAll('a[href^="mailto:"], a[href^="http"]').forEach(anchor => {
+        anchor.style.position = 'relative';
+        anchor.style.zIndex = '100';
+        anchor.addEventListener('click', function(e) {
+          e.preventDefault();
+          e.stopPropagation();
+          window.open(this.getAttribute('href'), '_blank');
+          window.open(this.getAttribute('href'), '_blank');
         });
       });
     </script>
