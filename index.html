@@ -15,6 +15,78 @@
         --card-bg: #1f2937;
       }
       
+      @media (max-width: 768px) {
+        #mobile-menu {
+          display: none;
+          position: fixed;
+          top: 80px;
+          left: 0;
+          right: 0;
+          background-color: rgba(31, 41, 55, 0.98);
+          padding: 1.5rem;
+          flex-direction: column;
+          align-items: center;
+          gap: 1.5rem;
+          z-index: 1000;
+          backdrop-filter: blur(12px);
+          box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+          transition: all 0.3s ease;
+        }
+        #mobile-menu.active {
+          display: flex;
+          animation: fadeIn 0.3s ease forwards;
+        }
+        #mobile-menu.active {
+          display: flex;
+        }
+        
+        /* Responsive text sizes */
+        h1 {
+          font-size: 2.5rem;
+        }
+        h2 {
+          font-size: 2rem;
+        }
+        p {
+          font-size: 1rem;
+        }
+        
+        /* Section padding */
+        section {
+          padding: 2rem 1rem;
+        }
+        
+        /* Skill cards */
+        .grid {
+          grid-template-columns: 1fr;
+          gap: 1rem;
+        }
+
+        /* Mobile Menu Button Enhancements */
+        #mobile-menu-button {
+          transition: transform 0.3s ease, color 0.3s ease;
+        }
+        #mobile-menu-button:hover {
+          transform: scale(1.1);
+          color: var(--primary);
+        }
+        #mobile-menu-button:active {
+          transform: scale(0.95);
+        }
+        #mobile-menu-button svg path {
+          transition: d 0.3s ease;
+        }
+        #mobile-menu.active + #mobile-menu-button svg path:nth-child(1) {
+          d: path('M6 18L18 6M6 6l12 12'); /* Transform to X */
+        }
+        #mobile-menu.active + #mobile-menu-button svg path:nth-child(2) {
+          opacity: 0;
+        }
+        #mobile-menu.active + #mobile-menu-button svg path:nth-child(3) {
+           d: path('M6 18L18 6M6 6l12 12'); /* Transform to X */
+        }
+      }
+      
       .theme-dark {
         --primary: #4f46e5;
         --secondary: #ec4899;
@@ -87,6 +159,32 @@
         border-color: var(--primary);
       }
     </style>
+    <script>
+      function toggleMobileMenu(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        const menu = document.getElementById('mobile-menu');
+        const isActive = menu.classList.contains('active');
+        
+        // Toggle current menu
+        if (!isActive) {
+          menu.classList.add('active');
+          
+          // Close menu when clicking outside
+          const closeMenuHandler = function(e) {
+            if (!menu.contains(e.target) && e.target.id !== 'mobile-menu-button') {
+              menu.classList.remove('active');
+              document.removeEventListener('click', closeMenuHandler);
+            }
+          };
+          setTimeout(() => {
+            document.addEventListener('click', closeMenuHandler);
+          }, 100);
+        } else {
+          menu.classList.remove('active');
+        }
+      }
+    </script>
   </head>
   <body class="bg-gray-900 text-gray-100">
     <!-- Particles Background -->
@@ -95,13 +193,19 @@
     <div id="three-js-container" class="fixed top-0 left-0 w-full h-full z-0 opacity-20" style="pointer-events: none;"></div>
     <!-- Navigation -->
     <nav class="fixed w-full bg-gray-800/90 backdrop-blur-md z-50">
-      <div
-        class="container mx-auto px-6 py-4 flex justify-between items-center"
-      >
+      <div class="container mx-auto px-6 py-4 flex justify-between items-center">
         <span class="text-2xl font-bold gradient-text">MK</span>
-        <div class="space-x-8 flex items-center">
+        <!-- Mobile menu button -->
+        <button type="button" id="mobile-menu-button" class="md:hidden focus:outline-none p-2 rounded-md hover:bg-gray-700/50 active:bg-gray-600/50" onclick="toggleMobileMenu(event)">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16"></path>
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 12h16"></path>
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 18h16"></path>
+          </svg>
+        </button>
+        <div class="hidden md:flex space-x-8 items-center" id="desktop-menu">
           <div class="relative group" id="theme-selector">
-            <button class="hover:text-indigo-400 transition flex items-center transform hover:scale-110 duration-300" 
+            <button type="button" class="hover:text-indigo-400 transition flex items-center transform hover:scale-110 duration-300" 
                     onclick="toggleThemeMenu()">
               Theme
               <svg class="w-4 h-4 ml-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -157,17 +261,25 @@
             >Contact</a
           >
         </div>
+        
+        <!-- Mobile Menu (Outside desktop-menu) -->
+        <div id="mobile-menu" class="md:hidden">
+          <a href="#experience" class="block py-2 hover:text-indigo-400 transition">Experience</a>
+          <a href="#skills" class="block py-2 hover:text-indigo-400 transition">Skills</a>
+          <a href="#education" class="block py-2 hover:text-indigo-400 transition">Education</a>
+          <a href="#contact" class="block py-2 hover:text-indigo-400 transition">Contact</a>
+        </div>
       </div>
     </nav>
 
     <!-- Hero Section -->
     <section class="min-h-screen flex items-center pt-20">
       <div class="container mx-auto px-6" data-aos="fade-up">
-        <h1 class="text-5xl md:text-7xl font-bold mb-6">Manmath Kapale</h1>
-        <h2 class="text-3xl md:text-5xl gradient-text font-bold mb-8">
+        <h1 class="text-4xl md:text-7xl font-bold mb-6">Manmath Kapale</h1>
+        <h2 class="text-2xl md:text-5xl gradient-text font-bold mb-8">
           Senior Software Engineer
         </h2>
-        <p class="text-xl md:text-2xl text-gray-400 max-w-3xl mb-12">
+        <p class="text-base md:text-2xl text-gray-400 max-w-3xl mb-12 px-4 md:px-0">
           A dynamic and multi-skilled professional with 7.7 years of experience
           in .Net 6 (.Net core), Angular 10, Reactjs, and Microservices.
         </p>
@@ -408,6 +520,12 @@
     <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
+      // Mobile menu toggle
+      // Initialize mobile menu with single event listener
+      const mobileMenuButton = document.getElementById('mobile-menu-button');
+      mobileMenuButton.removeEventListener('click', toggleMobileMenu);
+      mobileMenuButton.addEventListener('click', toggleMobileMenu);
+      
       // Initialize AOS
       AOS.init({
         duration: 1000,
